@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Unity.Cinemachine;
 
 [RequireComponent(typeof(CharacterController))]
 public class FirstPersonController : MonoBehaviour
@@ -25,9 +26,13 @@ public class FirstPersonController : MonoBehaviour
     [SerializeField] private float groundDistance = 0.4f;
     [SerializeField] private LayerMask groundMask;
 
+    [Header("Cinemachine (optional)")]
+    [SerializeField] private bool useCinemachine = false;
+    [SerializeField] private Transform cameraTarget; // Pour Cinemachine
+
     // Components
     private CharacterController controller;
-    private Camera playerCamera;
+    [SerializeField] private CinemachineCamera playerCamera;
     private PlayerInput playerInput;
 
     // Movement variables
@@ -40,6 +45,7 @@ public class FirstPersonController : MonoBehaviour
     private float currentHeight;
     private Vector2 moveInput;
     private Vector2 lookInput;
+    private bool canControl = true;
 
     // Camera rotation
     private float xRotation = 0f;
@@ -48,7 +54,7 @@ public class FirstPersonController : MonoBehaviour
     void Awake()
     {
         controller = GetComponent<CharacterController>();
-        playerCamera = GetComponentInChildren<Camera>();
+        //playerCamera = GetComponentInChildren<Camera>();
         playerInput = GetComponent<PlayerInput>();
 
         // Lock and hide cursor
@@ -64,7 +70,19 @@ public class FirstPersonController : MonoBehaviour
         controller.height = standingHeight;
 
         // Sauvegarder la position initiale de la caméra
-        initialCameraHeight = playerCamera.transform.localPosition.y;
+        if (playerCamera != null)
+        {
+            initialCameraHeight = playerCamera.transform.localPosition.y;
+        }
+
+        // Si on utilise Cinemachine, créer un target pour la rotation
+        if (useCinemachine && cameraTarget == null)
+        {
+            GameObject targetObj = new GameObject("CameraTarget");
+            targetObj.transform.SetParent(transform);
+            targetObj.transform.localPosition = new Vector3(0, initialCameraHeight, 0);
+            cameraTarget = targetObj.transform;
+        }
 
         // Create ground check if not assigned
         if (groundCheck == null)
@@ -100,21 +118,27 @@ public class FirstPersonController : MonoBehaviour
         switch (context.action.name)
         {
             case "Move":
+                if (!canControl) return;
                 moveInput = context.ReadValue<Vector2>();
                 break;
 
             case "Look":
+                if (!canControl) return;
                 lookInput = context.ReadValue<Vector2>();
                 break;
 
             case "Jump":
-                if (context.performed && isGrounded && !isCrouching)
+                if (!canControl) return;
+
+                if (context.performed && !isCrouching)
                 {
                     velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
                 }
                 break;
 
             case "Sprint":
+                if (!canControl) return;
+
                 if (context.performed)
                 {
                     if (isCrouching)
@@ -135,6 +159,8 @@ public class FirstPersonController : MonoBehaviour
                 break;
 
             case "Crouch":
+                if (!canControl) return;
+
                 if (context.performed)
                 {
                     if (isCrouching)
@@ -151,6 +177,12 @@ public class FirstPersonController : MonoBehaviour
                         isCrouching = true;
                         targetHeight = crouchHeight;
                     }
+                }
+                break;
+            case "Escape":
+                if (context.performed)
+                {
+                    CameraSwitcher.instance.OnClosePlanetMap();
                 }
                 break;
         }
@@ -257,5 +289,10 @@ public class FirstPersonController : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
+    }
+
+    public void SetCanControl(bool can)
+    {
+        canControl = can;
     }
 }
