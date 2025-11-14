@@ -1,54 +1,102 @@
 using UnityEngine;
-
+using System.Collections.Generic;
+using UnityEngine.InputSystem;
 
 public class PlanetSelector : MonoBehaviour
 {
+    private static PlanetSelector Instance { get; set; }
+    public static PlanetSelector instance => Instance;
+
     // Référence à la caméra principale
     [SerializeField] private Camera mainCamera;
     private CameraSwitcher camSwitch;
+    [SerializeField] private List<PlanetBehaviour> planets = new List<PlanetBehaviour>();
+    private PlanetBehaviour currentHoveredPlanet;
+    private PlanetBehaviour currentSelectedPlanet;
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this) Destroy(this);
+        else Instance = this;
+    }
+
     private void Start()
     {
         camSwitch = CameraSwitcher.instance;
     }
     void Update()
     {
-        if (camSwitch.GetView()) return;
-        // Crée un rayon depuis la position de la souris
-        Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+        if (!camSwitch.GetView())
+        { 
+            DetectHover();
+            DetectClick();
+        }
+    }
+
+    void DetectHover()
+    {
+        if (currentSelectedPlanet) return;
+        Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
         RaycastHit hit;
+
         if (Physics.Raycast(ray, out hit))
         {
-            // Si l’objet touché a le tag "Planet"
             if (hit.collider.CompareTag("Planet"))
             {
-                Debug.Log("Planète détectée : " + hit.collider.name);
-                OnPlanetSelected(hit.collider.gameObject);
+                PlanetBehaviour ph = hit.collider.GetComponent<PlanetBehaviour>();
+                Debug.Log("Planet detected : " + hit.collider.gameObject.name);
+
+                if (ph != currentHoveredPlanet)
+                {
+                    if (currentHoveredPlanet != null)
+                        currentHoveredPlanet.SetHover(false);
+
+                    currentHoveredPlanet = ph;
+                    currentHoveredPlanet.SetHover(true);
+                }
+                return;
+            }
+        }
+
+        // Si on ne survole plus rien
+        if (currentHoveredPlanet != null)
+        {
+            currentHoveredPlanet.SetHover(false);
+            currentHoveredPlanet = null;
+        }
+    }
+
+    void DetectClick()
+    {
+        if (currentSelectedPlanet) return;
+        // Si le joueur clique
+        if (Mouse.current.leftButton.wasPressedThisFrame)
+        {
+            Vector2 mousePos = Mouse.current.position.ReadValue();
+            Ray ray = mainCamera.ScreenPointToRay(mousePos);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit))
+            {
+                if (hit.collider.CompareTag("Planet"))
+                {
+                    currentSelectedPlanet = hit.collider.GetComponent<PlanetBehaviour>();
+                    currentHoveredPlanet.SetHover(false);
+                    OnPlanetSelected(currentSelectedPlanet);
+                }
             }
         }
     }
 
-    void DetectPlanet()
+    // --------------------------------------
+    void OnPlanetSelected(PlanetBehaviour planet)
     {
-        // Crée un rayon depuis la position de la souris
-        Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-
-        // On vérifie si le rayon touche quelque chose
-        if (Physics.Raycast(ray, out hit))
-        {
-            // Si l’objet touché a le tag "Planet"
-            if (hit.collider.CompareTag("Planet"))
-            {
-                Debug.Log("Planète détectée : " + hit.collider.name);
-                OnPlanetSelected(hit.collider.gameObject);
-            }
-        }
+        planet.SelectPlanet();
     }
 
-    // Fonction appelée quand une planète est sélectionnée
-    void OnPlanetSelected(GameObject planet)
+    public void DeselectPlanet()
     {
-        // Ici tu pourras lancer ton menu, animation, chargement, etc.
-        Debug.Log("Fonction de sélection de planète appelée !");
+        currentSelectedPlanet.DisableUI();
+        currentSelectedPlanet = null;
     }
 }

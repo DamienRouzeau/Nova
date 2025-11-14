@@ -30,6 +30,9 @@ public class FirstPersonController : MonoBehaviour
     [SerializeField] private bool useCinemachine = false;
     [SerializeField] private Transform cameraTarget; // Pour Cinemachine
 
+    private bool isPlanetSelected = false;
+
+
     // Components
     private CharacterController controller;
     [SerializeField] private CinemachineCamera playerCamera;
@@ -64,6 +67,9 @@ public class FirstPersonController : MonoBehaviour
 
     void Start()
     {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+
         // Initialize heights
         currentHeight = standingHeight;
         targetHeight = standingHeight;
@@ -182,7 +188,15 @@ public class FirstPersonController : MonoBehaviour
             case "Escape":
                 if (context.performed)
                 {
-                    CameraSwitcher.instance.OnClosePlanetMap();
+                    if(isPlanetSelected)
+                    {
+                        PlanetSelector.instance.DeselectPlanet();
+                        CameraSwitcher.instance.SetPlanetView();
+                    }
+                    else
+                    {
+                        CameraSwitcher.instance.OnClosePlanetMap();
+                    }
                 }
                 break;
         }
@@ -289,6 +303,11 @@ public class FirstPersonController : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
+    }
+
+    public void SetSelectedPlanet(bool _selected)
+    {
+        isPlanetSelected = _selected;
     }
 
     public void SetCanControl(bool can)

@@ -1,6 +1,8 @@
 using UnityEngine;
 using Unity.Cinemachine;
 using UnityEngine.InputSystem;
+using System.Collections.Generic;
+
 
 public class CameraSwitcher : MonoBehaviour
 
@@ -18,6 +20,9 @@ public class CameraSwitcher : MonoBehaviour
     [Header("Player Control")]
     [SerializeField] private FirstPersonController playerController;
     [SerializeField] private PlayerInput playerInput;
+
+    [Header("PlanetCameras")]
+    [SerializeField] List<PlanetBehaviour> planets = new List<PlanetBehaviour>();
 
     private bool isPlanetView = false;
     private CinemachineBrain brain;
@@ -66,6 +71,9 @@ public class CameraSwitcher : MonoBehaviour
 
     public void SetPlayerView()
     {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+
         isPlanetView = false;
 
         // Change les priorités
@@ -74,6 +82,11 @@ public class CameraSwitcher : MonoBehaviour
 
         if (planetCamera != null)
             planetCamera.Priority.Value = 5;
+
+        foreach (PlanetBehaviour _planet in planets)
+        {
+            _planet.UnselectPlanet();
+        }
 
         // Réactive les contrôles du joueur
         if (playerController != null)
@@ -92,6 +105,9 @@ public class CameraSwitcher : MonoBehaviour
 
     public void SetPlanetView()
     {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+
         isPlanetView = true;
 
         // Change les priorités
@@ -100,6 +116,10 @@ public class CameraSwitcher : MonoBehaviour
 
         if (planetCamera != null)
             planetCamera.Priority.Value = 10;
+        foreach(PlanetBehaviour _planet in planets)
+        {
+            _planet.UnselectPlanet();
+        }
 
         // Désactive les contrôles du joueur (optionnel)
         // if (playerController != null)
@@ -111,6 +131,7 @@ public class CameraSwitcher : MonoBehaviour
 
         Debug.Log("Switched to Planet View");
         playerController.SetCanControl(false);
+        playerController.SetSelectedPlanet(false);
     }
 
     // Méthode pour appeler depuis un bouton UI
@@ -123,6 +144,18 @@ public class CameraSwitcher : MonoBehaviour
     public void OnClosePlanetMap()
     {
         SetPlayerView();
+    }
+
+    public void PlanetSelected(PlanetBehaviour planet)
+    {
+        if (playerCamera != null)
+            playerCamera.Priority.Value = 5;
+
+        if (planetCamera != null)
+            planetCamera.Priority.Value = 5;
+
+        planet.GetCamera().Priority.Value = 10;
+        playerController.SetSelectedPlanet(true);
     }
 
     public bool GetView() { return !isPlanetView;  }
