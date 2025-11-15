@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6391727797131137918}
   - component: {fileID: 859844035180320331}
   - component: {fileID: 6920140701129838097}
+  - component: {fileID: 5309437223726240689}
   - component: {fileID: 7151373558168961406}
   m_Layer: 0
   m_Name: Spawner
@@ -87,6 +88,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &5309437223726240689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7079419915017769941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c4b548361316264a9daf7d0833c9e26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  creaturePrefabs:
+  - {fileID: 581579567081918220, guid: 95dc0e4b82594dd478e5046e0a4bb004, type: 3}
+  spawnRadius: 10
+  minCreatures: 1
+  maxCreatures: 3
+  respawnTime: 300
 --- !u!64 &7151373558168961406
 MeshCollider:
   m_ObjectHideFlags: 0
