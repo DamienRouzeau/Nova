@@ -26,6 +26,7 @@ public class ProceduralWorldGenerator : MonoBehaviour
 
     [Header("Placement")]
     [SerializeField] private PlacementSettings vegetationSettings;
+    [SerializeField] private PlacementSettings grassSettings;
     [SerializeField] private PlacementSettings resourceSettings;
     [SerializeField] private PlacementSettings lootSettings;
     [SerializeField] private PlacementSettings creatureSpawnSettings;
@@ -33,6 +34,10 @@ public class ProceduralWorldGenerator : MonoBehaviour
     [Header("Water")]
     [SerializeField] private GameObject waterPrefab;
     [SerializeField] private float waterLevel = 20f;
+
+    [Header("Grass GPU Instancing")]
+    [SerializeField] private bool enableGrassInstancing = true;
+    [SerializeField] private GrassGPUInstancing grassInstancing;
 
     [Header("Performance")]
     [SerializeField] private int maxObjectsPerFrame = 50;
@@ -134,6 +139,16 @@ public class ProceduralWorldGenerator : MonoBehaviour
         };
 
         chunks[coord] = chunk;
+
+        if (enableGrassInstancing && grassInstancing != null)
+        {
+            grassInstancing.GenerateGrassForChunk(chunk);
+        }
+    }
+
+    public Dictionary<Vector2Int, TerrainChunk> GetAllChunks()
+    {
+        return chunks;
     }
 
     TerrainMesh GenerateTerrainMesh(Vector2Int chunkCoord)
@@ -259,12 +274,12 @@ public class ProceduralWorldGenerator : MonoBehaviour
     {
         switch (biome)
         {
-            case BiomeType.Water: return new Color(0.2f, 0.4f, 0.8f);
-            case BiomeType.Beach: return new Color(0.9f, 0.9f, 0.7f);
-            case BiomeType.Plains: return new Color(0.4f, 0.7f, 0.3f);
-            case BiomeType.Forest: return new Color(0.2f, 0.5f, 0.2f);
-            case BiomeType.Desert: return new Color(0.9f, 0.8f, 0.5f);
-            case BiomeType.Mountain: return new Color(0.5f, 0.5f, 0.5f);
+            case BiomeType.Water: return new Color(0.0f, 0.3f, 0.8f);
+            case BiomeType.Beach: return new Color(0.9f, 0.9f, 0.6f);
+            case BiomeType.Plains: return new Color(0.3f, 0.8f, 0.2f);
+            case BiomeType.Forest: return new Color(0.4f, 0.6f, 0.15f);
+            case BiomeType.Desert: return new Color(0.9f, 0.7f, 0.3f);
+            case BiomeType.Mountain: return new Color(0.6f, 0.6f, 0.6f);
             default: return Color.white;
         }
     }
@@ -281,6 +296,22 @@ public class ProceduralWorldGenerator : MonoBehaviour
             if (vegetationSettings != null && vegetationSettings.enabled)
             {
                 foreach (var obj in PlaceObjectsInChunk(chunk, vegetationSettings))
+                {
+                    spawnedObjects.Add(obj);
+                    objectsThisFrame++;
+
+                    if (objectsThisFrame >= maxObjectsPerFrame)
+                    {
+                        objectsThisFrame = 0;
+                        yield return null;
+                    }
+                }
+            }
+
+            // Place herbe
+            if (grassSettings != null && grassSettings.enabled)
+            {
+                foreach (var obj in PlaceObjectsInChunk(chunk, grassSettings))
                 {
                     spawnedObjects.Add(obj);
                     objectsThisFrame++;

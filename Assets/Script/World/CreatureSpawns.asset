@@ -36,4 +36,4 @@ MonoBehaviour:
   minYOffset: 0
   maxYOffset: 0
   useMinDistance: 0
-  minDistanceBetweenObjects: 5
+  minDistanceBetweenObjects: 20

@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bb903a7ccad8c845a47b33816049dbf, type: 3}
+  m_Name: Mountain
+  m_EditorClassIdentifier: 
+  biomeType: 5
+  biomeName: Mountain
+  biomeColor: {r: 0.5188679, g: 0.5188679, b: 0.5188679, a: 1}
+  heightMultiplier: 50
+  roughness: 1
+  groundTexture: {fileID: 2800000, guid: 2429085135ee66846a7d8f6d01722b4d, type: 3}
+  normalMap: {fileID: 2800000, guid: 8768f1cd68ca0ab4cb19e830e96fecf4, type: 3}
+  tintColor: {r: 0.3962264, g: 0.3962264, b: 0.3962264, a: 1}
+  vegetationDensity: 0.6
+  treePrefabs: []
+  grassPrefabs: []
+  rockPrefabs: []
+  resourceSpawns: []
+  creatureSpawns: []

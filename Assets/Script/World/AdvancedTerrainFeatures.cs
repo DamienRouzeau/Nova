@@ -64,6 +64,11 @@ public class LakeGenerator : MonoBehaviour
         // Trouve la hauteur moyenne
         float avgHeight = GetAverageHeight(chunk, center, radius);
 
+        if (avgHeight > 25f) // Pas de lac en hauteur
+        {
+            return null;
+        }
+
         // Crée l'objet lac
         if (waterPrefab != null)
         {
@@ -85,8 +90,26 @@ public class LakeGenerator : MonoBehaviour
 
     float GetAverageHeight(TerrainChunk chunk, Vector3 worldPos, float radius)
     {
-        // Simplifié : retourne une hauteur
-        return 20f; // À améliorer avec sampling du heightmap
+        // Au lieu de retourner 20f fixe, sample le heightmap
+
+        // Convertis world pos en local chunk pos
+        Vector3 localPos = worldPos - chunk.gameObject.transform.position;
+        int sampleCount = 10;
+        float totalHeight = 0;
+
+        for (int i = 0; i < sampleCount; i++)
+        {
+            float angle = (360f / sampleCount) * i * Mathf.Deg2Rad;
+            float x = localPos.x + Mathf.Cos(angle) * radius * 0.5f;
+            float z = localPos.z + Mathf.Sin(angle) * radius * 0.5f;
+
+            int gridX = Mathf.Clamp((int)x, 0, chunk.heightMap.GetLength(0) - 1);
+            int gridZ = Mathf.Clamp((int)z, 0, chunk.heightMap.GetLength(1) - 1);
+
+            totalHeight += chunk.heightMap[gridX, gridZ];
+        }
+
+        return totalHeight / sampleCount;
     }
 }
 

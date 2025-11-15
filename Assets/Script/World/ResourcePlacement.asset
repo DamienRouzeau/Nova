@@ -22,14 +22,17 @@ MonoBehaviour:
   - biome: 5
     prefabs:
     - {fileID: 6609864376906189823, guid: 1e4b9608ddbc4fb49be643513e3f4b03, type: 3}
+    - {fileID: 6609864376906189823, guid: 04de3bad70ae72f4480b0dce60546da1, type: 3}
     spawnChance: 0
   - biome: 2
     prefabs:
+    - {fileID: 6609864376906189823, guid: 2ada43797ef5b60429ec75f91c014e5b, type: 3}
     - {fileID: 6609864376906189823, guid: 1e4b9608ddbc4fb49be643513e3f4b03, type: 3}
     spawnChance: 0
   - biome: 2
     prefabs:
-    - {fileID: 6609864376906189823, guid: 1e4b9608ddbc4fb49be643513e3f4b03, type: 3}
+    - {fileID: 6609864376906189823, guid: 2ada43797ef5b60429ec75f91c014e5b, type: 3}
+    - {fileID: 6609864376906189823, guid: 04de3bad70ae72f4480b0dce60546da1, type: 3}
     spawnChance: 0
   minScale: 0.8
   maxScale: 1.5

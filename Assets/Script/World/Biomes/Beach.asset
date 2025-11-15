@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bb903a7ccad8c845a47b33816049dbf, type: 3}
+  m_Name: Beach
+  m_EditorClassIdentifier: 
+  biomeType: 1
+  biomeName: Beach
+  biomeColor: {r: 1, g: 0.9267906, b: 0, a: 1}
+  heightMultiplier: 2
+  roughness: 1
+  groundTexture: {fileID: 2800000, guid: 741ae3c32da2a574e8ef967827beedfc, type: 3}
+  normalMap: {fileID: 2800000, guid: 9beaee85d3201054091e77725ba9f28f, type: 3}
+  tintColor: {r: 0.5993309, g: 0, b: 1, a: 1}
+  vegetationDensity: 0.2
+  treePrefabs: []
+  grassPrefabs: []
+  rockPrefabs: []
+  resourceSpawns: []
+  creatureSpawns: []

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 3b6fed375ce18634d8f0f43ff0eacc6f
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _WaterTex: {fileID: 2800000, guid: 1b5a0e67236e7944aa3b76b96340dc6e, type: 3}
+  - _BeachTex: {fileID: 2800000, guid: 52cac2af27d2ae043bb51df5047728c1, type: 3}
+  - _PlainsTex: {fileID: 2800000, guid: 07934483f9d08ac41b96ae11ab97ab9f, type: 3}
+  - _ForestTex: {fileID: 2800000, guid: 83b3c7e0d58305e4698d3ae5b65f4c4c, type: 3}
+  - _DesertTex: {fileID: 2800000, guid: 9340734bb106c3b47a2fadbb65221aeb, type: 3}
+  - _MountainTex: {fileID: 2800000, guid: 60b422db44185f644b2df4cedf015f1e, type: 3}
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bb903a7ccad8c845a47b33816049dbf, type: 3}
+  m_Name: Forest
+  m_EditorClassIdentifier: 
+  biomeType: 3
+  biomeName: Forest
+  biomeColor: {r: 0.07006645, g: 1, b: 0, a: 1}
+  heightMultiplier: 10
+  roughness: 1
+  groundTexture: {fileID: 2800000, guid: 0374e0e45d8026c4c861f82d5bb71827, type: 3}
+  normalMap: {fileID: 2800000, guid: 43def387a1e26bc4cb02ccf4910294fb, type: 3}
+  tintColor: {r: 0.100138426, g: 1, b: 0, a: 1}
+  vegetationDensity: 0.9
+  treePrefabs:
+  - {fileID: 267893002474307875, guid: f83596fb45cc31640a8131c0d6d3b04f, type: 3}
+  - {fileID: 267893002474307875, guid: c7cba0c11c1bda3419e32cbd94da26b4, type: 3}
+  - {fileID: 267893002474307875, guid: bdceb6b67f522c7429bd75bb4d42282b, type: 3}
+  - {fileID: 267893002474307875, guid: 4b277f977ad2e5b40b6a450096d29788, type: 3}
+  grassPrefabs:
+  - {fileID: 8558135107901804716, guid: 92d2032e00a47e048bd65cf7c3d02ac3, type: 3}
+  - {fileID: 5256090950867542382, guid: 24eabf0a395b2a5458138d6dd3e7d0b6, type: 3}
+  - {fileID: 2816785834026973336, guid: b7857d505ec4d4c4faa8fad60f4f8fb7, type: 3}
+  - {fileID: 5060540798885461378, guid: 189e6abf29e9e3645abe5da0179e5048, type: 3}
+  - {fileID: 6782790254150265620, guid: b3be9ede0b0fe5248baed9ad61628931, type: 3}
+  - {fileID: 4843742355480476792, guid: 33cca5182c9a3c24da57559ec052f915, type: 3}
+  - {fileID: 4843397900354445355, guid: cb9e814675eaccb4b8bf670d836c937b, type: 3}
+  - {fileID: 8594256211152643870, guid: 520b8ce02c3a281428123aa31eb83754, type: 3}
+  - {fileID: 5775735114295650676, guid: 8178a68f67af5854d800c66c29065f62, type: 3}
+  - {fileID: 8115258942704230513, guid: 6cfa41bde6fcad042ac65d8d9fff72aa, type: 3}
+  - {fileID: 5653738244127001467, guid: 3d273197a8a30f44bbcbb129f7981625, type: 3}
+  - {fileID: 5793228225679356420, guid: 61f82206d17da5048809eca42d53d32d, type: 3}
+  rockPrefabs:
+  - {fileID: 6609864376906189823, guid: 2ada43797ef5b60429ec75f91c014e5b, type: 3}
+  - {fileID: 6609864376906189823, guid: 04de3bad70ae72f4480b0dce60546da1, type: 3}
+  resourceSpawns:
+  - resourcePrefab: {fileID: 6609864376906189823, guid: 1e4b9608ddbc4fb49be643513e3f4b03, type: 3}
+    spawnChance: 0.001
+    minGroupSize: 1
+    maxGroupSize: 3
+  creatureSpawns:
+  - creaturePrefab: {fileID: 7079419915017769941, guid: ea91c3097cb3365449cf380da01bcf8c, type: 3}
+    spawnChance: 0.002
+    maxCreaturesPerChunk: 5

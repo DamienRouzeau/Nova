@@ -70,8 +70,7 @@ public class WorldManager : MonoBehaviour
         if (lakeGenerator != null && worldGenerator != null)
         {
             lakeGenerator.Initialize(worldGenerator, worldGenerator.GetSeed());
-            // lakes = lakeGenerator.GenerateLakes(worldGenerator.GetAllChunks());
-            // Commenté car méthode GetAllChunks() à implémenter
+            lakes = lakeGenerator.GenerateLakes(worldGenerator.GetAllChunks());
         }
 
         yield return new WaitForSeconds(0.5f);
@@ -84,7 +83,7 @@ public class WorldManager : MonoBehaviour
         if (caveGenerator != null)
         {
             caveGenerator.Initialize(worldGenerator.GetSeed());
-            // caves = caveGenerator.GenerateCaves(worldGenerator.GetAllChunks());
+            caves = caveGenerator.GenerateCaves(worldGenerator.GetAllChunks());
         }
 
         yield return new WaitForSeconds(0.5f);
@@ -97,7 +96,7 @@ public class WorldManager : MonoBehaviour
         if (expeditionSpawner != null)
         {
             expeditionSpawner.Initialize(worldGenerator.GetSeed());
-            // expeditionSites = expeditionSpawner.GenerateExpeditionSites(worldGenerator.GetAllChunks());
+            expeditionSites = expeditionSpawner.GenerateExpeditionSites(worldGenerator.GetAllChunks());
         }
 
         yield return new WaitForSeconds(0.5f);
