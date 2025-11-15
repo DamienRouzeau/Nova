@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c00d3c0c5f2104a428b892910f2ec02a, type: 3}
+  m_Name: LootPlacement
+  m_EditorClassIdentifier: 
+  enabled: 1
+  placementName: Objects
+  density: 0.001
+  minHeight: 20
+  maxHeight: 45
+  allowedBiomes: 0500000004000000020000000100000003000000
+  biomePrefabs:
+  - biome: 5
+    prefabs:
+    - {fileID: 7732389343204098853, guid: 60e13bb71f51ed7428d0573a4e5cdf58, type: 3}
+    spawnChance: 0
+  - biome: 4
+    prefabs:
+    - {fileID: 7732389343204098853, guid: 60e13bb71f51ed7428d0573a4e5cdf58, type: 3}
+    spawnChance: 0
+  - biome: 2
+    prefabs:
+    - {fileID: 7732389343204098853, guid: 60e13bb71f51ed7428d0573a4e5cdf58, type: 3}
+    spawnChance: 0
+  - biome: 1
+    prefabs:
+    - {fileID: 7732389343204098853, guid: 60e13bb71f51ed7428d0573a4e5cdf58, type: 3}
+    spawnChance: 0
+  - biome: 3
+    prefabs:
+    - {fileID: 7732389343204098853, guid: 60e13bb71f51ed7428d0573a4e5cdf58, type: 3}
+    spawnChance: 0
+  minScale: 0.8
+  maxScale: 1.5
+  minYOffset: 0
+  maxYOffset: 0
+  useMinDistance: 0
+  minDistanceBetweenObjects: 5
