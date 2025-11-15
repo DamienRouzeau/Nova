@@ -36,7 +36,7 @@ public class GrassGPUInstancing : MonoBehaviour
     System.Collections.IEnumerator FindPlayerDelayed()
     {
         // Attends que le joueur soit spawné
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(10f);
 
         GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
         if (playerObj != null)

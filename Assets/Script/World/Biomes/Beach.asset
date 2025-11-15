@@ -20,8 +20,10 @@ MonoBehaviour:
   groundTexture: {fileID: 2800000, guid: 741ae3c32da2a574e8ef967827beedfc, type: 3}
   normalMap: {fileID: 2800000, guid: 9beaee85d3201054091e77725ba9f28f, type: 3}
   tintColor: {r: 0.5993309, g: 0, b: 1, a: 1}
-  vegetationDensity: 0.2
-  treePrefabs: []
+  vegetationDensity: 0.1
+  treePrefabs:
+  - {fileID: 5037089260756916391, guid: 3fc12646fe128b04bb8362d20a240025, type: 3}
+  - {fileID: 2205477837901580443, guid: f191a559ee48bf244851b67454723de5, type: 3}
   grassPrefabs: []
   rockPrefabs: []
   resourceSpawns: []

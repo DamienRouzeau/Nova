@@ -15,7 +15,7 @@ MonoBehaviour:
   enabled: 1
   placementName: Objects
   density: 0.002
-  minHeight: 20
+  minHeight: 10
   maxHeight: 50
   allowedBiomes: 050000000300000002000000
   biomePrefabs:

@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: VegetationPlacement
   m_EditorClassIdentifier: 
   enabled: 1
-  placementName: Objects
-  density: 0.1
-  minHeight: 0
+  placementName: Tree
+  density: 0.0304
+  minHeight: -20
   maxHeight: 60
-  allowedBiomes: 0300000002000000
+  allowedBiomes: 03000000020000000100000005000000
   biomePrefabs:
   - biome: 3
     prefabs:
@@ -30,6 +30,17 @@ MonoBehaviour:
     prefabs:
     - {fileID: 267893002474307875, guid: bdceb6b67f522c7429bd75bb4d42282b, type: 3}
     - {fileID: 267893002474307875, guid: f83596fb45cc31640a8131c0d6d3b04f, type: 3}
+    spawnChance: 0
+  - biome: 1
+    prefabs:
+    - {fileID: 6609864376906189823, guid: 1e4b9608ddbc4fb49be643513e3f4b03, type: 3}
+    - {fileID: 6609864376906189823, guid: 2ada43797ef5b60429ec75f91c014e5b, type: 3}
+    - {fileID: 6609864376906189823, guid: 04de3bad70ae72f4480b0dce60546da1, type: 3}
+    spawnChance: 0
+  - biome: 5
+    prefabs:
+    - {fileID: 5037089260756916391, guid: 3fc12646fe128b04bb8362d20a240025, type: 3}
+    - {fileID: 2205477837901580443, guid: f191a559ee48bf244851b67454723de5, type: 3}
     spawnChance: 0
   minScale: 0.8
   maxScale: 2.5

@@ -195,6 +195,7 @@ public class FirstPersonController : MonoBehaviour
                     }
                     else
                     {
+                        if(CameraSwitcher.instance)
                         CameraSwitcher.instance.OnClosePlanetMap();
                     }
                 }

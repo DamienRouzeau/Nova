@@ -119,63 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &32741375
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 638544159766519158, guid: 3fa603a7b88dc3a459e9948958ec2091, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 638544159766519158, guid: 3fa603a7b88dc3a459e9948958ec2091, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 638544159766519158, guid: 3fa603a7b88dc3a459e9948958ec2091, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 638544159766519158, guid: 3fa603a7b88dc3a459e9948958ec2091, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 638544159766519158, guid: 3fa603a7b88dc3a459e9948958ec2091, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 638544159766519158, guid: 3fa603a7b88dc3a459e9948958ec2091, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 638544159766519158, guid: 3fa603a7b88dc3a459e9948958ec2091, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 638544159766519158, guid: 3fa603a7b88dc3a459e9948958ec2091, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 638544159766519158, guid: 3fa603a7b88dc3a459e9948958ec2091, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 638544159766519158, guid: 3fa603a7b88dc3a459e9948958ec2091, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3186033529081691619, guid: 3fa603a7b88dc3a459e9948958ec2091, type: 3}
-      propertyPath: m_Name
-      value: Player
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 3fa603a7b88dc3a459e9948958ec2091, type: 3}
 --- !u!1 &49986060
 GameObject:
   m_ObjectHideFlags: 0
@@ -369,7 +312,7 @@ Transform:
   m_GameObject: {fileID: 151134667}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.8, z: 0}
+  m_LocalPosition: {x: 281.57547, y: 276.06717, z: -166.06137}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -889,11 +832,6 @@ MonoBehaviour:
   wreckagePrefabs: []
   minExpeditions: 3
   maxExpeditions: 8
---- !u!1 &1568345968 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3186033529081691619, guid: 3fa603a7b88dc3a459e9948958ec2091, type: 3}
-  m_PrefabInstance: {fileID: 32741375}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1755361015
 GameObject:
   m_ObjectHideFlags: 0
@@ -969,7 +907,7 @@ MonoBehaviour:
   caveCount: 5
   minCaveDepth: 10
   maxCaveDepth: 30
-  caveEntrancePrefab: {fileID: 0}
+  caveEntrancePrefab: {fileID: 113662, guid: 50efbeb1997f748f1b75d91c80fffbb5, type: 3}
 --- !u!114 &1755361019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1004,7 +942,7 @@ MonoBehaviour:
   chunkSize: 64
   useRandomSeed: 1
   seed: 12345
-  heightMultiplier: 10
+  heightMultiplier: 15
   noiseScale: 0.005
   octaves: 4
   persistence: 0.5
@@ -1045,7 +983,7 @@ MonoBehaviour:
   lakeGenerator: {fileID: 1755361019}
   caveGenerator: {fileID: 1755361018}
   expeditionSpawner: {fileID: 1755361017}
-  playerPrefab: {fileID: 1568345968}
+  playerPrefab: {fileID: 3186033529081691619, guid: 3fa603a7b88dc3a459e9948958ec2091, type: 3}
   playerSpawnHeight: {x: 0, y: 50, z: 0}
   showProgressUI: 1
 --- !u!114 &1755361022
@@ -1060,15 +998,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14b1f0debad81df4f97a3b731c13f597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grassMesh: {fileID: -2432090755550338912, guid: fd244a0c0f4ab7146a38ff446364e017, type: 3}
+  grassMesh: {fileID: -2432090755550338912, guid: 9108d8aa8fe520941ba55c808b852be2, type: 3}
   grassMaterial: {fileID: 2100000, guid: 5fc693aa4addf5d4ea09351a7d4d2b4c, type: 2}
   grassPerChunk: 2500
   grassScale: 1.2
-  spawnRadius: 32
-  onlyInForest: 1
-  onlyInPlains: 1
   maxRenderDistance: 100
   enableCulling: 1
+  chunkUpdateInterval: 2
+  spawnInForest: 1
+  spawnInPlains: 1
 --- !u!1 &1866491397
 GameObject:
   m_ObjectHideFlags: 0
@@ -1127,5 +1065,4 @@ SceneRoots:
   - {fileID: 385496076}
   - {fileID: 705889962}
   - {fileID: 1755361016}
-  - {fileID: 32741375}
   - {fileID: 151134671}
